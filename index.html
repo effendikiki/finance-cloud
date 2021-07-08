@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance Cloud</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+        :root {
+            --green: #01a89e;
+            --green-lighter: #d3edf0;
+            --indigo: #6959f3;
+            --indigo-lighter: #dedbff;
+            --grey: #969ab1;
+            --grey-lighter: #f8f9fe;
+            --orange: #eb5824;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Roboto", sans-serif;
+            color: #616166;
+            overflow-x: hidden;
+        }
+
+        .bg-primary {
+            background-color: var(--green);
+        }
+
+        .bg-primary-lighter {
+            background-color: var(--green-lighter);
+        }
+
+        .bg-secondary {
+            background-color: var(--indigo-lighter);
+        }
+
+        .bg-grey {
+            background-color: var(--grey-lighter);
+        }
+
+        .bg-white {
+            background-color: white;
+        }
+
+        .text-primary {
+            color: var(--green);
+        }
+
+        .text-secondary {
+            color: var(--indigo);
+        }
+
+        .text-danger {
+            color: var(--orange);
+        }
+
+        .text-grey {
+            color: var(--grey);
+        }
+
+        .text-black {
+            color: rgb(44, 45, 66);
+        }
+
+        .text-white {
+            color: whitesmoke;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .flex-wrap {
+            flex-wrap: wrap;
+        }
+
+        .flex-col {
+            flex-direction: column;
+        }
+
+        .justify-center {
+            justify-content: center;
+        }
+
+        .justify-between {
+            justify-content: space-between;
+        }
+
+        .justify-end {
+            justify-content: flex-end;
+        }
+
+        .items-center {
+            align-items: center;
+        }
+
+        .items-end {
+            align-items: flex-end;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            margin: 0 5px;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .btn-group {
+            padding: 5px 8px;
+            border: none;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .btn-logo {
+            width: 60px;
+            height: 100%;
+            border-radius: 0 0 15px 0;
+            box-shadow: 0px 0px 30px -4px var(--green);
+        }
+
+        .text-sm {
+            font-size: smaller;
+        }
+
+        .font-bold {
+            font-weight: 600;
+        }
+
+        .rounded {
+            border-radius: 5px;
+        }
+
+        .rounded-lg {
+            border-radius: 10px;
+        }
+
+        .rounded-full {
+            border-radius: 50%;
+        }
+
+        .border {
+            border: 1px lightgray solid;
+        }
+
+        .border-left {
+            border-left: 1px lightgray solid;
+        }
+
+        .border-right {
+            border-right: 1px lightgray solid;
+        }
+
+        .border-top {
+            border-top: 1px lightgray solid;
+        }
+
+        .border-bottom {
+            border-bottom: 1px lightgray solid;
+        }
+
+        .side-link {
+            font-size: small;
+            padding: 12px 20px;
+            width: 100%;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        .side-link:hover,
+        .side-link.active {
+            color: var(--green);
+            background-color: var(--green-lighter);
+        }
+
+        .side-link-list {
+            font-size: small;
+            list-style: none;
+            padding: 10px 20px 10px 40px;
+        }
+
+        .side-link-list>li {
+            padding: 10px;
+            border-left: 2px lightgrey solid;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+        }
+
+        .side-link-list>li:not(.flex) {
+            padding-left: 40px;
+        }
+
+        .side-link-list>li:hover,
+        .side-link-list>li.active {
+            color: var(--green);
+            border-color: var(--green);
+        }
+
+        .icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        .icon-btn {
+            width: 15px;
+            height: 15px;
+            margin-right: 10px;
+        }
+
+        .icon-mini {
+            width: 12px;
+            height: 12px;
+        }
+
+        .icon-pill {
+            width: 15px;
+            height: 15px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        aside {
+            width: 20%;
+            min-height: 92vh;
+            border-right: 1px lightgray solid;
+        }
+
+        nav {
+            height: 50px;
+            width: 100vw;
+            border-bottom: 1px lightgray solid;
+        }
+
+        input {
+            border: none;
+            outline: none;
+        }
+
+        select {
+            margin-right: 15px;
+            padding-right: 25px;
+            padding-left: 10px;
+            border: none;
+            outline: none;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        tr {
+            padding: 15px 0;
+        }
+
+        tr>th {
+            font-size: smaller;
+            padding: 15px 10px;
+            text-align: left;
+        }
+
+        tr>td {
+            font-size: smaller;
+            padding: 15px 10px;
+            text-align: left;
+            margin: 0;
+            border-bottom: 1px solid lightgrey;
+        }
+
+        tbody>tr:hover {
+            background-color: var(--green-lighter);
+        }
+
+        ::-webkit-scrollbar {
+            width: 1px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+
+        ::-webkit-datetime-edit-text,
+        ::-webkit-datetime-edit-month-field,
+        ::-webkit-datetime-edit-day-field,
+        ::-webkit-datetime-edit-year-field {
+            display: none;
+        }
+
+        @media (max-width: 960px) {
+
+            #logo,
+            #attachment,
+            aside {
+                display: none;
+            }
+
+            nav {
+                height: 70px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            #section {
+                width: 100%;
+                padding: 0;
+            }
+
+            #nav-content {
+                width: 100%;
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="flex">
+        <div id="logo" class="flex items-center bg-grey border-right" style="width: 20%; height: 100%;">
+
+            <div class="btn-logo bg-primary">
+            </div>
+
+            <div id="company-name" style="margin-left: 50px;">
+                <h3>
+                    <span class="text-primary">Finance</span><span class="text-danger">cloud</span>
+                </h3>
+            </div>
+        </div>
+        <div id="nav-content" class="flex items-center justify-between" style="width: 80%; padding: 0 20px;">
+
+            <div id="attachment" class="flex border rounded" style="overflow: hidden;">
+                <div class="flex justify-center border-right text-primary" style="padding: 5px 5px;">
+                    <svg style="width: 20px;" class="" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                        </path>
+                    </svg>
+                </div>
+                <div class="flex items-center text-sm font-bold" style="padding: 8px 10px; ">User
+                    Guide - SIM Keuangan</div>
+                <div>
+                    <button class="text-sm text-white btn-group bg-primary" style="height: 100%;">BACA</button>
+                </div>
+            </div>
+
+            <div class="flex items-center">
+                <div class="flex items-center justify-center rounded-full bg-primary"
+                    style="width: 35px; height: 35px;">
+                    <svg style="width: 20px; color: white" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9">
+                        </path>
+                    </svg>
+                </div>
+                <div class="flex items-center justify-center rounded-full"
+                    style="width: 35px; height: 35px; margin: 0 10px; background-color: #313753;"></div>
+                <div class="flex items-center text-sm font-bold" style="cursor: pointer;">
+                    Agra Sabian
+                    <svg class="icon-mini" style="margin-left: 5px;" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </div>
+            </div>
+
+        </div>
+    </nav>
+
+    <main class="flex">
+
+        <!-- sidebar -->
+        <aside class="bg-grey" style="padding: 20px 0;">
+            <div class="text-grey" style="padding-left: 20px; padding-bottom: 10px;">MAIN MENU</div>
+            <div class="side-link">
+                <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+                    </path>
+                </svg>
+                Dashboard
+            </div>
+            <div class="side-link">
+                <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01">
+                    </path>
+                </svg>
+                Anggaran
+            </div>
+            <div id="expand" class="side-expand">
+                <div class="flex justify-between side-link">
+                    <div class="flex items-center">
+                        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                        </svg>
+                        Transaksi
+                    </div>
+                    <svg class="icon-mini" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </div>
+                <ul class="side-link-list" hidden>
+                    <li class="flex items-center active">
+                        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M11 15l-3-3m0 0l3-3m-3 3h8M3 12a9 9 0 1118 0 9 9 0 01-18 0z"></path>
+                        </svg>
+                        Transaksi Masuk
+                    </li>
+                    <li>Transaksi Keluar</li>
+                    <li>Mutasi</li>
+                    <li>Jurnal Umum</li>
+
+                    <hr class="border-top">
+                    <li>Penerimaan Mahasiswa</li>
+                    <hr class="border-top">
+                    <li>Penerimaan Umum</li>
+
+                    <li>Pengajuan Dana</li>
+                    <li>Pencairan Dana</li>
+                    <li>Pertanggungjawaban</li>
+                </ul>
+            </div>
+            <div class="flex justify-between side-link">
+                <div class="flex items-center">
+                    <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M5 19a2 2 0 01-2-2V7a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1M5 19h14a2 2 0 002-2v-5a2 2 0 00-2-2H9a2 2 0 00-2 2v5a2 2 0 01-2 2z">
+                        </path>
+                    </svg>
+                    Akuntansi
+                </div>
+                <svg class="icon-mini" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+            </div>
+            <div class="flex justify-between side-link">
+                <div class="flex items-center">
+                    <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                        </path>
+                    </svg>
+                    Referensi
+                </div>
+                <svg class="icon-mini" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+            </div>
+            <div class="flex justify-between side-link">
+                <div class="flex items-center">
+                    <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
+                    </svg>
+                    Laporan
+                </div>
+                <svg class="icon-mini" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+            </div>
+            <div class="flex justify-between side-link">
+                <div class="flex items-center">
+                    <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z">
+                        </path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                    Pengaturan
+                </div>
+                <svg class="icon-mini" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+            </div>
+        </aside>
+        <!-- sidebar -->
+
+        <section id="section" class="flex flex-col" style="width: 80%; padding: 20px 25px;">
+
+            <!-- breadcrumbs -->
+            <div class="text-sm font-bold text-grey">
+                <span>
+                    Transaksi
+                </span>
+                <svg class="icon-mini" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+                <span>
+                    Pengajuan Dana
+                </span>
+            </div>
+            <!-- breadcrumbs -->
+
+            <!-- header page -->
+            <div class="flex flex-wrap items-center justify-between" style="padding: 10px 0;">
+                <div class="flex flex-wrap items-center">
+                    <div class="flex items-center justify-center rounded-lg bg-primary-lighter text-primary"
+                        style="width: 40px; height: 40px; margin-right: 10px;">
+                        <svg style="width: 30px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M11 15l-3-3m0 0l3-3m-3 3h8M3 12a9 9 0 1118 0 9 9 0 01-18 0z"></path>
+                        </svg>
+                    </div>
+                    <h1 class="text-black">Pengajuan Dana</h1>
+                </div>
+
+                <div class="flex flex-wrap items-center">
+                    <div class="border-right" style="padding-right: 10px; margin-right: 20px;">
+                        <button class="font-bold bg-white btn text-primary">
+                            <svg class="icon-mini" style="margin-right: 10px;" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                            </svg>
+                            Kembali
+                        </button>
+                    </div>
+                    <div class="flex">
+                        <button class="text-white btn bg-primary">
+                            <svg class="icon-btn" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z">
+                                </path>
+                            </svg>
+                            Buat Pengajuan Dana
+                        </button>
+                        <button class="font-bold bg-white btn text-danger" style="border: 1px red solid;">
+                            <svg class="icon-btn" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
+                                </path>
+                            </svg>
+                            Hapus
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- header page -->
+
+            <!-- search & filter -->
+            <div class="flex flex-wrap items-center justify-between" style="padding: 10px 0;">
+                <div class="flex flex-wrap items-center">
+                    <div class="flex border rounded" style="margin-right: 10px; padding-left: 15px; overflow: hidden;">
+                        <input type="text" placeholder="Cari tanggal atau nomor pengajuan" size="35">
+                        <button class="btn" style="margin: 0px; border-radius: 0;">
+                            <svg style="width: 17px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <button id="filter-btn" class="font-bold bg-white btn text-primary">
+                        <svg class="icon-btn" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z">
+                            </path>
+                        </svg>
+                        Tampilkan Filter
+                    </button>
+                </div>
+
+                <div class="flex flex-wrap items-center">
+                    <span class="text-sm font-bold" style="margin-right: 10px;">Data per halaman : </span>
+
+                    <div class="flex">
+                        <div class="flex items-center border rounded " style="margin-right: 15px;">
+                            <select class="font-bold text-grey">
+                                <option value="10 Baris">10 Baris</option>
+                            </select>
+                        </div>
+
+                        <button disabled class="border btn">
+                            <svg class="icon-btn" style="margin: 0;" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 19l-7-7 7-7"></path>
+                            </svg>
+                        </button>
+
+                        <button class="border btn">
+                            <svg class="icon-btn" style="margin: 0;" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                                </path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- search & filter -->
+
+            <!-- filter -->
+            <div id="filter-container" class="flex items-center justify-between hidden" style="padding: 10px 0;">
+
+                <fieldset class="border rounded" style="padding: 0px 20px 20px 20px; width: 100%;">
+                    <legend class="text-sm font-bold text-grey" style="padding: 10px;">Filter data pengajuan dana
+                    </legend>
+
+                    <div class="flex flex-wrap items-center" style="margin-left: 10px; column-gap: 20px;">
+
+                        <div>
+                            <div>
+                                <span class="text-sm text-grey">Unit</span>
+                            </div>
+                            <div class="flex items-center border rounded" style="margin-top: 10px;">
+                                <select class="font-bold text-black rounded" style="padding: 10px 80px 10px 10px;">
+                                    <option value="1101">1101 - PT.Sentra Vidya Utama</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <div>
+                            <div>
+                                <span class="text-sm text-grey">Tahun Anggaran</span>
+                            </div>
+                            <div class="flex items-center border rounded" style="margin-top: 10px;">
+                                <select class="font-bold text-black rounded" style="padding: 10px 80px 10px 10px;">
+                                    <option value="2020">2020</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div>
+                                <span class="text-sm text-grey">Tanggal Pengajuan Dana</span>
+                            </div>
+                            <div class="flex items-center border rounded" style="overflow: hidden; margin-top: 10px;">
+                                <input type="text" class="font-bold bg-white text-grey"
+                                    style="padding: 10px 10px 10px 10px;" value="Tanggal mulai - Tanggal akhir"
+                                    size="25" disabled>
+                                <input type="date" id="input-date" style="padding-right: 10px;">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="flex flex-wrap items-center" style="margin-left: 10px; column-gap: 20px;">
+
+                        <div style="margin: 10px 140px 0 0;">
+                            <div>
+                                <span class="text-sm text-grey">Sumber Dana</span>
+                            </div>
+                            <div class="flex items-center text-sm font-bold text-black"
+                                style="gap: 10px; margin-top: 10px;">
+                                <div class="flex items-center">
+                                    <input type="radio" name="sumber" id="anggaran" value="Anggaran">
+                                    <label for="anggaran" style="margin-left: 5px;">Anggaran</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="radio" name="sumber" id="penerimaan" value="Penerimaan">
+                                    <label for="penerimaan" style="margin-left: 5px;">Penerimaan</label>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <div style="margin-top: 10px;">
+                            <div>
+                                <span class="text-sm text-grey">Tipe Relasi</span>
+                            </div>
+                            <div class="flex items-center text-sm font-bold text-black"
+                                style="gap: 10px; margin-top: 10px;">
+                                <div class="flex items-center">
+                                    <input type="radio" name="tipe" id="langsung" value="Langsung">
+                                    <label for="langsung" style="margin-left: 5px;">Langsung</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="radio" name="tipe" id="tidak-langsung" value="Tidak Langsung">
+                                    <label for="tidak-langsung" style="margin-left: 5px;">Tidak Langsung</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="radio" name="tipe" id="defisit" value="Pertanggungjawaban Defisit">
+                                    <label for="defisit" style="margin-left: 5px;">Pertanggungjawaban
+                                        Defisit</label>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </fieldset>
+
+            </div>
+            <!-- filter -->
+
+            <!-- pill button -->
+            <div class="flex flex-wrap items-center" style="padding: 10px 0; gap: 10px;">
+                <div class="flex items-center text-sm rounded bg-secondary text-secondary">
+                    <div style="padding: 0 10px;">
+                        <b>Unit: </b> 1101 - PT. Sentra Vidya Utama
+                    </div>
+                    <div class="flex items-center border-left" style="padding: 8px 10px; border-color: white;">
+                        <svg class="icon-pill text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12">
+                            </path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="flex items-center text-sm rounded bg-secondary text-secondary">
+                    <div style="padding: 0 10px;">
+                        <b>Tahun Anggaran: </b> 2020
+                    </div>
+                    <div class="flex items-center border-left" style="padding: 8px 10px; border-color: white;">
+                        <svg class="icon-pill text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12">
+                            </path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="flex items-center text-sm rounded bg-secondary text-secondary">
+                    <div style="padding: 0 10px;">
+                        <b>Sumber Dana: </b> Anggaran
+                    </div>
+                    <div class="flex items-center border-left" style="padding: 8px 10px; border-color: white;">
+                        <svg class="icon-pill text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12">
+                            </path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="flex items-center text-sm rounded bg-secondary text-secondary">
+                    <div style="padding: 0 10px;">
+                        <b>Tipe Realisasi: </b> Tidak Langsung
+                    </div>
+                    <div class="flex items-center border-left" style="padding: 8px 10px; border-color: white;">
+                        <svg class="icon-pill text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12">
+                            </path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <!-- pill button -->
+
+            <!-- table -->
+            <div class="rounded border-top border-left border-right bg-grey" style="margin: 10px 0; overflow-x:auto;">
+                <table style="width: 100%;">
+                    <thead>
+                        <tr class="border-bottom">
+                            <th>
+                                <input type="checkbox">
+                            </th>
+                            <th>Tanggal Pengajuan</th>
+                            <th>No. Pengajuan</th>
+                            <th>Sumber Dana</th>
+                            <th>Tipe Realisasi</th>
+                            <th>Penerimaan</th>
+                            <th style="text-align: right;">Total Pengajuan</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white" id="table-body">
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- table -->
+
+            <!-- pagination -->
+            <div class="flex flex-wrap items-center justify-between" style="padding: 10px 0;">
+                <div class="flex items-center">
+                    <span class="text-sm font-bold" style="margin-right: 10px;">1 - 10 dari 100</span>
+                </div>
+
+                <div class="flex flex-wrap items-center">
+                    <span class="text-sm font-bold" style="margin-right: 10px;">Data per halaman : </span>
+
+                    <div class="flex">
+                        <div class="flex items-center border rounded " style="margin-right: 15px;">
+                            <select class="font-bold text-grey">
+                                <option value="10 Baris">10 Baris</option>
+                            </select>
+                        </div>
+
+                        <button disabled class="border btn">
+                            <svg class="icon-btn" style="margin: 0;" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 19l-7-7 7-7"></path>
+                            </svg>
+                        </button>
+
+                        <button class="border btn">
+                            <svg class="icon-btn" style="margin: 0;" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                                </path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- pagination -->
+        </section>
+
+    </main>
+
+    <script>
+
+        const expand = document.getElementById('expand');
+        expand.addEventListener('click', function () {
+            const ul = expand.querySelector('ul');
+            const arrow = expand.querySelector('div > svg.icon-mini');
+            const sideLink = expand.querySelector('div > div.side-link');
+
+            if (ul.hasAttribute('hidden')) {
+                ul.removeAttribute('hidden');
+                arrow.style.transform = 'rotate(180deg)';
+                sideLink.classList.add('active');
+            } else {
+                ul.setAttribute('hidden', '');
+                arrow.style.transform = 'rotate(360deg)';
+                sideLink.classList.remove('active');
+            }
+        });
+
+        const filterBtn = document.getElementById('filter-btn');
+        const container = document.getElementById('filter-container');
+
+        filterBtn.addEventListener('click', function () {
+            container.classList.toggle('hidden')
+        });
+
+
+        let data = [
+            {
+                tgl: '15 january',
+                no: 'PG/1101/2018/12',
+                sumber: 'Anggaran',
+                tipe: 'Tidak Langsung',
+                penerimaan: '-',
+                total: '1.700.000,00'
+            },
+            {
+                tgl: '15 january',
+                no: 'PG/1101/2018/11',
+                sumber: 'Anggaran',
+                tipe: 'Tidak Langsung',
+                penerimaan: '-',
+                total: '2.600.000,00'
+            },
+            {
+                tgl: '14 january',
+                no: 'PG/1101/2018/10',
+                sumber: 'Anggaran',
+                tipe: 'Tidak Langsung',
+                penerimaan: '-',
+                total: '500.000,00'
+            },
+            {
+                tgl: '15 january',
+                no: 'PG/1101/2018/11',
+                sumber: 'Anggaran',
+                tipe: 'Tidak Langsung',
+                penerimaan: '-',
+                total: '2.600.000,00'
+            },
+            {
+                tgl: '14 january',
+                no: 'PG/1101/2018/10',
+                sumber: 'Anggaran',
+                tipe: 'Tidak Langsung',
+                penerimaan: '-',
+                total: '500.000,00'
+            },
+            {
+                tgl: '15 january',
+                no: 'PG/1101/2018/11',
+                sumber: 'Anggaran',
+                tipe: 'Tidak Langsung',
+                penerimaan: '-',
+                total: '2.600.000,00'
+            },
+            {
+                tgl: '14 january',
+                no: 'PG/1101/2018/10',
+                sumber: 'Anggaran',
+                tipe: 'Tidak Langsung',
+                penerimaan: '-',
+                total: '500.000,00'
+            },
+            {
+                tgl: '15 january',
+                no: 'PG/1101/2018/11',
+                sumber: 'Anggaran',
+                tipe: 'Tidak Langsung',
+                penerimaan: '-',
+                total: '2.600.000,00'
+            },
+            {
+                tgl: '14 january',
+                no: 'PG/1101/2018/10',
+                sumber: 'Anggaran',
+                tipe: 'Tidak Langsung',
+                penerimaan: '-',
+                total: '500.000,00'
+            },
+            {
+                tgl: '14 january',
+                no: 'PG/1101/2018/10',
+                sumber: 'Anggaran',
+                tipe: 'Tidak Langsung',
+                penerimaan: '-',
+                total: '500.000,00'
+            },
+        ];
+
+        const tableBody = document.getElementById('table-body');
+        function addData() {
+            for (let dt of data) {
+                const tr = document.createElement('tr');
+
+                const check = document.createElement('td');
+                check.innerHTML = '<input type="checkbox">'
+                const tgl = document.createElement('td');
+                tgl.innerText = dt.tgl;
+                const no = document.createElement('td');
+                no.innerText = dt.no;
+                const sumber = document.createElement('td');
+                sumber.innerText = dt.sumber;
+                const tipe = document.createElement('td');
+                tipe.innerText = dt.tipe;
+                const penerimaan = document.createElement('td');
+                penerimaan.innerText = dt.penerimaan;
+                const total = document.createElement('td');
+                total.innerText = dt.total;
+                total.style.textAlign = 'right';
+
+                tr.append(check, tgl, no, sumber, tipe, penerimaan, total);
+                tableBody.append(tr);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            addData();
+        })
+
+    </script>
+</body>
+
+</html>
